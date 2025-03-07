@@ -1,0 +1,73 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+    
+<h1>View All Logs</h1>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{myFilter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ticket Number</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Source</th>
+        <th scope="col">Site</th>
+        <th scope="col">Service Type</th>
+        <th scope="col">Troubleshoot Required?</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Status</th>
+        <th scope="col">Resolution</th>
+        <th scope="col">Date/Time Submitted</th>
+        <th scope="col">Time Taken</th>
+        <th scope="col">Completion Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+      <tr>
+        <th scope="row">{{log.ticket_Number}}</th>
+        <td>{{log.employee}}</td>
+        <td>{{log.source}}</td>
+        <td>{{log.site}}</td>
+        <td>{{log.services}}</td>
+        <td>{{log.troubleshoot_Required}}</td>
+        <td>{{log.notes}}</td>
+        <td>{{log.status}}</td>
+        <td>{{log.resolution}}</td>
+        <td>{{log.dateCreated}}</td>
+        <td>{{log.clock}}</td>
+        <td>{{log.completion_Status}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if logs.has_previous %}
+            <a href="?page=1{{ new_request }}">&laquo; First</a>
+            <a href="?page={{ logs.previous_page_number }}{{ new_request }}">Previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ logs.number }} of {{ logs.paginator.num_pages }}.
+        </span>
+
+        {% if logs.has_next %}
+            <a href="?page={{ logs.next_page_number }}{{ new_request }}">Next</a>
+            <a href="?page={{ logs.paginator.num_pages }}{{ new_request }}">Last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}

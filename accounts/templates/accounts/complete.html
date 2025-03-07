@@ -1,0 +1,11 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+<p>Are you sure you are ready to submit {{log}}?</p>
+<form action="{% url 'complete' log.id %}" method="POST">
+    {% csrf_token %}
+    <a class="btn btn-sm btn-info" href="{% url 'autoLog' %}">Cancel</a>
+    <input class="btn btn-sm btn-info" type="submit" name="Confirm">
+</form>
+{% endblock %}

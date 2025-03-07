@@ -1,0 +1,44 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Your Current Trouble Ticket</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ticket Number</th>
+        <th scope="col">Property</th>
+        <th scope="col">Customer Number</th>
+        <th scope="col">Site ID</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">MDU ID</th>
+        <th scope="col">OPRID</th>
+        <th scope="col">Customer Service Rep.</th>
+        <th scope="col">Trouble Call Received</th>
+        <th scope="col">Call Reason</th>
+        <th scope="col">No Schedule Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for ddt in ddts %}
+      <tr>
+        <td><strong>{{ddt.TicketNumber}}</strong></td>
+        <td>{{ddt.MNAME}}</td>
+        <td>{{ddt.CustomerNumber}}</td>
+        <td>{{ddt.SITE_ID}}</td>
+        <td>{{ddt.CustomerName}}</td>
+        <td>{{ddt.FullAddress}}</td>
+        <td>{{ddt.MDU_ID}}</td>
+        <td>{{ddt.OPRID}}</td>
+        <td>{{ddt.ContactEmployee}}</td>
+        <td>{{ddt.TroubleCallReceived}}</td>
+        <td>{{ddt.CallReason}}</td>
+        <td>{{ddt.NoScheduleReason}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

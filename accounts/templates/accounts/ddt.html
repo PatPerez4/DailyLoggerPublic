@@ -1,0 +1,14 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Uploading a new Secure Plus spreadsheet</h1>
+<form id="newLine" method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="file-field">
+        <input type="file" name="file" title="Upload Secure Plus file" required="required" accept=".csv">
+    </div>
+    <input type="submit" name="Submit">
+</form>
+{% endblock %}

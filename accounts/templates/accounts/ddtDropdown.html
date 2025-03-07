@@ -1,0 +1,40 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1>Assign Eero Secure Plus Tickets to Tier 2 Members</h1>
+<form id="newLine" method="POST" action="">
+  {% csrf_token %}
+<input type="submit" name="Submit">
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Order Number</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">Offer Number</th>
+        <th scope="col">Action</th>
+        <th scope="col">Assign To</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for ddt in ddts %}
+
+      <tr>
+        
+        <input type="hidden" name="id" value="{{ ddt.CID }}">
+        <td><strong>{{ddt.CID}}</strong></td>
+        <td>{{ddt.action}}</td>
+        <td>{{ddt.SUB_Start}}</td>
+        <td>{{ddt.SUB_Stop}}</td>
+        <td>{{form.employee}}</td>
+      
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</form>
+
+{% endblock %}

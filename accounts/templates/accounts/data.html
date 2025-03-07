@@ -1,0 +1,36 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Tickets Completed Today Per Employee</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Employee</th>
+        <th scope="col">Total Ticket Count</th>
+        <th scope="col">Cognito Ticket Count</th>
+        <th scope="col">Change Order/Disconnect/Reconnect Count</th>
+        <th scope="col">Trouble Ticket Count</th>
+        <th scope="col">Collection Disconnect Count</th>
+        <th scope="col">Eero Secure Plus Count</th>
+        <th scope="col">Manual Ticket Count</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for log in logs %}
+      <tr>
+        <td><strong>{{log.employee}}</strong></td>
+        <td>{{log.total}}</td>
+        <td>{{log.cogTotal}}</td>
+        <td>{{log.changeTotal}}</td>
+        <td>{{log.troubleTotal}}</td>
+        <td>{{log.collectionTotal}}</td>
+        <td>{{log.eeroTotal}}</td>
+        <td>{{log.manualTotal}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

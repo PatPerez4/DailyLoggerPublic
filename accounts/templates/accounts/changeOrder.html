@@ -1,0 +1,14 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Uploading a new change order/disconnect/reconnect spreadsheet</h1>
+<form id="newLine" method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="file-field">
+        <input type="file" name="file" title="Upload change order/disconnect/reconnect file" required="required" accept=".csv">
+    </div>
+    <input type="submit" name="Submit">
+</form>
+{% endblock %}

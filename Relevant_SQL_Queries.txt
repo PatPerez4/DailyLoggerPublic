@@ -1,0 +1,1 @@
+SELECT employee, COUNT(*) FROM accounts_log WHERE CAST(dateCreated as DATE) = '2020-11-20' AND source = 'Cognito' GROUP BY employee;

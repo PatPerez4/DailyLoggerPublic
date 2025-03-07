@@ -1,0 +1,29 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+
+<h1>Grab a Pending Collection Disconnect Ticket</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Offer Number</th>
+        <th scope="col">Account Type</th>
+        <th scope="col">Action</th>
+        <th scope="col">Property Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for collectionDisconnect in collectionDisconnects %}
+        <tr>
+          <td><strong><a class="btn btn-sm btn-info" href="{% url 'collectionDisconnectCheck' collectionDisconnect.id %}">{{collectionDisconnect.OfferNumber}}</a></strong></td>
+          <td>{{collectionDisconnect.AccountNumber}}</td>
+          <td>{{collectionDisconnect.ActionSuspendDowngrade}}</td>
+          <td>{{collectionDisconnect.PropertyName}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

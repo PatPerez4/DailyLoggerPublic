@@ -1,0 +1,11 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+<p>Are you sure you wish to grab this Ticket?</p>
+<form action="{% url 't2ProvCheck' ddt.id %}" method="POST">
+    {% csrf_token %}
+    <a class="btn btn-sm btn-info" href="{% url 't2ProvGrabber' %}">Cancel</a>
+    <input class="btn btn-sm btn-info" type="submit" name="Confirm">
+</form>
+{% endblock %}

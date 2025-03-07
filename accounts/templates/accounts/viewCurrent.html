@@ -1,0 +1,49 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+    
+<h1>View</h1>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <form method="get">
+                {{myFilter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ticket Number</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Site</th>
+        <th scope="col">Service Type</th>
+        <th scope="col">Time Taken</th>
+        <th scope="col">Source</th>
+        <th scope="col">Notes</th>
+        <th scope="col">Status</th>
+        <th scope="col">Resolution</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+      <tr>
+        <th scope="row">{{log.ticketNum}}</th>
+        <td>{{log.employee}}</td>
+        <td>{{log.site}}</td>
+        <td>{{log.services}}</td>
+        <td>{{log.clock}}</td>
+        <td>{{log.source}}</td>
+        <td>{{log.notes}}</td>
+        <td>{{log.status}}</td>
+        <td>{{log.resolution}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

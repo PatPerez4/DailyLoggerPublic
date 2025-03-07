@@ -1,0 +1,21 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Uploading a new DDT spreadsheet</h1>
+{% for log in logs %}
+    {% if log.completion_Status == "Submitted" %}
+        {% if current_time - (log.dateCreated.hour*60 + log.dateCreated.minute) >= 30 %}
+            <h2>Cog Test</h2>
+            {% endif %}
+    {% endif %}
+{% endfor %}
+<form id="newLine" method="POST" action="">
+    {% csrf_token %}
+    <div class="file-field">
+        <input type="file">
+    </div>
+    <input type="submit" name="Submit">
+</form>
+{% endblock %}

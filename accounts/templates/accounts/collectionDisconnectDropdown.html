@@ -1,0 +1,40 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1>Assign Collection Disconnect Tickets to Tier 2 Members</h1>
+<form id="newLine" method="POST" action="">
+  {% csrf_token %}
+<input type="submit" name="Submit">
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Offer Number</th>
+        <th scope="col">Account Type</th>
+        <th scope="col">Action</th>
+        <th scope="col">Property Name</th>
+        <th scope="col">Assign To</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for ddt in ddts %}
+
+      <tr>
+        
+        <input type="hidden" name="id" value="{{ ddt.OfferNumber }}">
+        <td><strong>{{ddt.OfferNumber}}</strong></td>
+        <td>{{ddt.AccountNumber}}</td>
+        <td>{{ddt.ActionSuspendDowngrade}}</td>
+        <td>{{ddt.PropertyName}}</td>
+        <td>{{form.employee}}</td>
+      
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</form>
+
+{% endblock %}

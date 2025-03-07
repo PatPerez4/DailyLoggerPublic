@@ -1,0 +1,33 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+
+<h1>Newly Submitted Cognitos</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ticket Number</th>
+        <th scope="col">Source</th>
+        <th scope="col">Site</th>
+        <th scope="col">Service Type</th>
+        <th scope="col">Technician Comments</th>
+        <th scope="col">Date/Time Submitted</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+      <tr>
+        <td><strong><a class="btn btn-sm btn-info" href="https://www.cognitoforms.com/forms/tier2provisionrequest2/entries/1-dw/{{log.cognito_Number}}">{{log.ticket_Number}}</a></strong></td>
+        <td>{{log.source}}</td>
+        <td>{{log.site}}</td>
+        <td>{{log.services}}</td>
+        <td>{{log.notes}}</td>
+        <td>{{log.dateCreated}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

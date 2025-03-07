@@ -1,0 +1,28 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Your Current Collection Disconnect Ticket</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Offer Number</th>
+        <th scope="col">Account Type</th>
+        <th scope="col">Action</th>
+        <th scope="col">Property Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for collectionDisconnect in collectionDisconnects %}
+        <tr>
+          <td><strong>{{collectionDisconnect.OfferNumber}}</strong></td>
+          <td>{{collectionDisconnect.AccountNumber}}</td>
+          <td>{{collectionDisconnect.ActionSuspendDowngrade}}</td>
+          <td>{{collectionDisconnect.PropertyName}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

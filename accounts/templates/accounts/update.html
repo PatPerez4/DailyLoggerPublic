@@ -1,0 +1,51 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Update Your Current Ticket</h1>
+<form id="newLine" method="POST" action="">
+  {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Ticket Number</label>
+      {{form.ticket_Number}}
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Source</label>
+      {{form.source}}
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Site</label>
+      {{form.site}}
+    </div>
+    {% if log.source != 'Trouble Ticket' and log.source != 'change orders/disconnects/reconnects' and log.source != 'Secure Plus'%}
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Service Type</label>
+      {{form.services}}
+    </div>
+    {% endif %}
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Troubleshoot Required?</label>
+        {{form.troubleshoot_Required}}
+      </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Notes</label>
+        <p></p>
+        {{form.notes}}
+      </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Status</label>
+        {{form.status}}
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Resolution</label>
+        {{form.resolution}}
+      </div>
+      {% if log.source == 'Secure Plus' %}
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Secure Plus Enabled/Removed?</label>
+        {{form.secure_Plus_Checker}}
+      </div>
+      {% endif %}
+      <input type="submit" name="Submit">
+  </form>
+{% endblock %}

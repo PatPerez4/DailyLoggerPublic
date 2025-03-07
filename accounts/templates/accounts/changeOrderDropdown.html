@@ -1,0 +1,58 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<h1>Assign Change Order Tickets to Tier 2 Members</h1>
+<form id="newLine" method="POST" action="">
+  {% csrf_token %}
+<input type="submit" name="Submit">
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Offer Number</th>
+        <th scope="col">Order Type</th>
+        <th scope="col">Billing Effective Date</th>
+        <th scope="col">Site ID</th>
+        <th scope="col">Property Name</th>
+        <th scope="col">Customer Account</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">ONT Serial Number</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Old Services</th>
+        <th scope="col">New Services</th>
+        <th scope="col">MDU ID</th>
+        <th scope="col">Assign To</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for ddt in ddts %}
+
+      <tr>
+        
+        <input type="hidden" name="id" value="{{ ddt.OFFERNUM }}">
+        <td><strong>{{ddt.OFFERNUM}}</strong></td>
+        <td>{{ddt.ORDERTYPE}}</td>
+        <td>{{ddt.BILLINGEFFECTIVEDATE}}</td>
+        <td>{{ddt.SITE_ID}}</td>
+        <td>{{ddt.PROPERTYNAME}}</td>
+        <td>{{ddt.CUST_ACCT}}</td>
+        <td>{{ddt.CUSTOMERNAME}}</td>
+        <td>{{ddt.FULLADDRESS}}</td>
+        <td>{{ddt.ONTSERIAL}}</td>
+        <td>{{ddt.ORDERDATE}}</td>
+        <td>{{ddt.OLDSERVICE}}</td>
+        <td>{{ddt.NEWSERVICE}}</td>
+        <td>{{ddt.MDU_ID}}</td>
+        <td>{{form.employee}}</td>
+      
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</form>
+
+{% endblock %}

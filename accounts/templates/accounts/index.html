@@ -1,0 +1,122 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Live View of Current Tickets Being Worked On</h1>
+{% if messages %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Ticket Number</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Source</th>
+        <th scope="col">Site</th>
+        <th scope="col">Service Type</th>
+        <th scope="col">Completion Status</th>
+        <th scope="col">Date Created</th>
+        {% if request.user.get_full_name == 'Cesare Johnson' %}
+        <th scope="col">Delete/Send Back Ticket</th>
+        <th scope="col">Manually Update Ticket for T2 Employee</th>
+        <th scope="col">Manually Complete Ticket for T2 Employee</th>
+        {% elif request.user.get_full_name == 'Francisco Pacheco' %}
+        <th scope="col">Delete/Send Back Ticket</th>
+        <th scope="col">Manually Update Ticket for T2 Employee</th>
+        <th scope="col">Manually Complete Ticket for T2 Employee</th>
+        {% elif request.user.get_full_name == 'Pedro Alvarez' %}
+        <th scope="col">Delete/Send Back Ticket</th>
+        <th scope="col">Manually Update Ticket for T2 Employee</th>
+        <th scope="col">Manually Complete Ticket for T2 Employee</th>
+        {% elif request.user.get_full_name == 'Patrick Perez' %}
+        <th scope="col">Delete/Send Back Ticket</th>
+        <th scope="col">Manually Update Ticket</th>
+        <th scope="col">Manually Complete Ticket</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+        {% for log in logs %}
+        {% if log.employee != 'Cesare Johnson' %}
+      <tr>
+        <td><strong>{{log.ticket_Number}}</strong></td>
+        <td>{{log.employee}}</td>
+        <td>{{log.source}}</td>
+        <td>{{log.site}}</td>
+        <td>{{log.services}}</td>
+        <td>{{log.completion_Status}}</td>
+        <td>{{log.dateCreated}}</td>
+        {% if request.user.get_full_name == 'Cesare Johnson' %}
+          {% if log.source == 'Trouble Ticket' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackTroubleTicket' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'change orders/disconnects/reconnects' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackChangeOrder' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Secure Plus' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackDdt' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Collection Disconnect' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackCollectionDisconnect' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% else %}
+          <td><a class="btn btn-sm btn-danger" href="{% url 'delete' log.id %}">Delete</a></td>
+          {% endif %}
+          <td><a class="btn btn-sm btn-info" href="{% url 'update' log.id %}">Update</a></td>
+          <td><a class="btn btn-sm btn-info" href="{% url 'complete' log.id %}">Mark as Complete</a></td>
+        {% elif request.user.get_full_name == 'Francisco Pacheco' %}
+          {% if log.source == 'Trouble Ticket' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackTroubleTicket' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'change orders/disconnects/reconnects' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackChangeOrder' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Secure Plus' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackDdt' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Collection Disconnect' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackCollectionDisconnect' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% else %}
+          <td><a class="btn btn-sm btn-danger" href="{% url 'delete' log.id %}">Delete</a></td>
+          {% endif %}
+          <td><a class="btn btn-sm btn-info" href="{% url 'update' log.id %}">Update</a></td>
+          <td><a class="btn btn-sm btn-info" href="{% url 'complete' log.id %}">Mark as Complete</a></td>
+        {% elif request.user.get_full_name == 'Pedro Alvarez' %}
+          {% if log.source == 'Trouble Ticket' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackTroubleTicket' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'change orders/disconnects/reconnects' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackChangeOrder' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Secure Plus' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackDdt' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Collection Disconnect' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackCollectionDisconnect' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% else %}
+          <td><a class="btn btn-sm btn-danger" href="{% url 'delete' log.id %}">Delete</a></td>
+          {% endif %}
+          <td><a class="btn btn-sm btn-info" href="{% url 'update' log.id %}">Update</a></td>
+          <td><a class="btn btn-sm btn-info" href="{% url 'complete' log.id %}">Mark as Complete</a></td>
+        {% elif request.user.get_full_name == 'Patrick Perez' %}
+          {% if log.source == 'Trouble Ticket' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackTroubleTicket' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'change orders/disconnects/reconnects' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackChangeOrder' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Secure Plus' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackDdt' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% elif log.source == 'Collection Disconnect' %}
+          <td><strong><a class="btn btn-sm btn-danger" href="{% url 'sendBackCollectionDisconnect' log.id %}">Send Back To Pending Ticket List</a></strong></td>
+          {% else %}
+          <td><a class="btn btn-sm btn-danger" href="{% url 'delete' log.id %}">Delete</a></td>
+          {% endif %}
+          <td><a class="btn btn-sm btn-info" href="{% url 'update' log.id %}">Update</a></td>
+          <td><a class="btn btn-sm btn-info" href="{% url 'complete' log.id %}">Mark as Complete</a></td>
+        {% endif %}
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

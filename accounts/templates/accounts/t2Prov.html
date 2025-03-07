@@ -1,0 +1,22 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.divider{
+    width:20px;
+    height:auto;
+    display:inline-block;
+}
+</style>
+
+<h1>Choose The Spreadsheet Format You Wish to Upload</h1>
+<a type="button" class="btn btn-secondary btn-lg" href="{% url 'troubleTicket' %}">Trouble Ticket</a>
+<div class="divider"></div>
+<a type="button" class="btn btn-secondary btn-lg" href="{% url 'changeOrder' %}">Change Order/Disconnect/Reconnect</a>
+<div class="divider"></div>
+<a type="button" class="btn btn-secondary btn-lg" href="{% url 'ddt' %}">Secure Plus</a>
+<div class="divider"></div>
+<a type="button" class="btn btn-secondary btn-lg" href="{% url 'collectionDisconnect' %}">Collection Disconnect</a>
+
+{% endblock %}

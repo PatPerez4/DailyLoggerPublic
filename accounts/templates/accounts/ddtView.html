@@ -1,0 +1,28 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+<h1>Your Current Secure Plus Ticket</h1>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Order Number</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">Offer Number</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for ddt in ddts %}
+      <tr>
+        <td><strong>{{ddt.CID}}</strong></td>
+        <td>{{ddt.action}}</td>
+        <td>{{ddt.SUB_Start}}</td>
+        <td>{{ddt.SUB_Stop}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
